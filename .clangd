@@ -1,8 +1,0 @@
-CompileFlags:
-  Add: [-std=c++23]
-InlayHints:
-  Enabled: yes
-  ParameterNames: no        # Turn off parameter name hints globally if they feel like spam
-  DeducedTypes: yes         # Keep type hints if helpful
-  Designators: yes          # Show designators for initializers only when useful
-  DefaultArguments: no
