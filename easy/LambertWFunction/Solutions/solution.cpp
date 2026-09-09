@@ -8,11 +8,10 @@ public:
 
         while (high - low > high * 1e-9l) {
             long double mid = low + (high - low) / 2;
-            if (std::pow(mid, mid) <= y) {
+            if (std::pow(mid, mid) <= y)
                 low = mid;
-            } else {
+            else
                 high = mid;
-            }
         }
         return low;
     }

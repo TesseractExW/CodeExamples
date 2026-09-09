@@ -3,10 +3,12 @@
 #include <vector>
 
 class Solution {
+    using Graph = std::vector<std::vector<std::pair<int, int>>>;
+
 private:
     // clang-format off
     bool canReach(
-        std::vector<std::vector<std::pair<int, int>>> &graph,
+        Graph &graph,
         std::vector<int> &fuel, 
         std::vector<int> &order,
         long long capacity) 
@@ -16,14 +18,12 @@ private:
         dp[0] = 0;
 
         for (int u : order) {
-            if (dp[u] < 0) {
+            if (dp[u] < 0)
                 continue;
-            }
             dp[u] = std::min(dp[u] + fuel[u], capacity);
             for (auto [v, dist] : graph[u]) {
-                if (dp[u] >= dist) {
+                if (dp[u] >= dist)
                     dp[v] = std::max(dp[v], dp[u] - dist);
-                }
             }
         }
         return dp.back() >= 0;
@@ -31,7 +31,7 @@ private:
 
     // clang-format off
     std::vector<int> getOrder(
-        std::vector<std::vector<std::pair<int, int>>> &graph,
+        Graph &graph,
         std::vector<int> indeg)
     {
         // clang-format on
@@ -39,9 +39,8 @@ private:
         std::vector<int> order;
 
         for (int i = 0; i < (int)graph.size(); ++i) {
-            if (indeg[i] == 0) {
+            if (indeg[i] == 0)
                 queue.push(i);
-            }
         }
         while (!queue.empty()) {
             int u = queue.front();
@@ -49,9 +48,8 @@ private:
             order.push_back(u);
 
             for (auto [v, dist] : graph[u]) {
-                if (--indeg[v] == 0) {
+                if (--indeg[v] == 0)
                     queue.push(v);
-                }
             }
         }
         return order;
@@ -60,7 +58,7 @@ private:
 public:
     long long minimumTankCapacity(int n, std::vector<std::vector<int>> &edges, std::vector<int> &fuel) {
         std::vector<int> indeg(n, 0);
-        std::vector<std::vector<std::pair<int, int>>> graph(n);
+        Graph graph(n);
 
         for (auto &edge : edges) {
             int u = edge[0];
@@ -78,11 +76,10 @@ public:
 
         while (low < high) {
             long long mid = low + (high - low) / 2;
-            if (canReach(graph, fuel, order, mid)) {
+            if (canReach(graph, fuel, order, mid))
                 high = mid;
-            } else {
+            else
                 low = mid + 1;
-            }
         }
         return canReach(graph, fuel, order, low) ? low : -1;
     }

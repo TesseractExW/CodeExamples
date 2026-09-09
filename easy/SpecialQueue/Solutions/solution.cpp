@@ -9,11 +9,10 @@ public:
 
         for (int i = 0; i < (int)P.size(); ++i) {
             specialCount += (int)P[i];
-            if (specialCount & 1) {
+            if (specialCount & 1)
                 dq.push_back(C[i]);
-            } else {
+            else
                 dq.push_front(C[i]);
-            }
         }
         return std::vector<int>(dq.begin(), dq.end());
     }

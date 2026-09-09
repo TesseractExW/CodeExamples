@@ -7,9 +7,8 @@ private:
 
         for (int distance : distances) {
             totalTime += (distance / 1000LL) / speed;
-            if (totalTime > target) {
+            if (totalTime > target)
                 return false;
-            }
         }
         return true;
     }
@@ -21,11 +20,10 @@ public:
 
         while (low < high) {
             int mid = low + (high - low) / 2;
-            if (canDeliver(distances, target, mid)) {
+            if (canDeliver(distances, target, mid))
                 high = mid;
-            } else {
+            else
                 low = mid + 1;
-            }
         }
         return canDeliver(distances, target, low) ? low : -1;
     }

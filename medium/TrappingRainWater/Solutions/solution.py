@@ -1,19 +1,16 @@
 class Solution:
     def trappingRainWater(self, heights: list[int]) -> int:
-        left = 0
-        right = len(heights) - 1
-
-        left_max = 0
-        right_max = 0
+        n = len(heights)
         totalWater = 0
 
-        while left < right:
-            if heights[left] < heights[right]:
-                left_max = max(left_max, heights[left])
-                totalWater += left_max - heights[left]
-                left += 1
-            else:
-                right_max = max(right_max, heights[right])
-                totalWater += right_max - heights[right]
-                right -= 1
+        left_max = [heights[0]] * n
+        right_max = [heights[-1]] * n
+
+        for i in range(1, n):
+            left_max[i] = max(left_max[i - 1], heights[i])
+        for i in range(n - 2, -1, -1):
+            right_max[i] = max(right_max[i + 1], heights[i])
+
+        for i in range(n):
+            totalWater += min(left_max[i], right_max[i]) - heights[i]
         return totalWater

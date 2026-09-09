@@ -1,27 +1,21 @@
-#include <algorithm>
 #include <vector>
 
 class Solution {
 public:
     int trappingRainWater(std::vector<int> &heights) {
-        int left = 0;
-        int right = (int)heights.size() - 1;
-
-        int left_max = 0;
-        int right_max = 0;
+        int n = (int)heights.size();
         int totalWater = 0;
 
-        while (left < right) {
-            if (heights[left] < heights[right]) {
-                left_max = std::max(left_max, heights[left]);
-                totalWater += left_max - heights[left];
-                ++left;
-            } else {
-                right_max = std::max(right_max, heights[right]);
-                totalWater += right_max - heights[right];
-                --right;
-            }
-        }
+        std::vector<int> left_max(n, heights[0]);
+        std::vector<int> right_max(n, heights[n - 1]);
+
+        for (int i = 1; i < n; ++i)
+            left_max[i] = std::max(left_max[i - 1], heights[i]);
+        for (int i = n - 2; i >= 0; --i)
+            right_max[i] = std::max(right_max[i + 1], heights[i]);
+
+        for (int i = 0; i < n; ++i)
+            totalWater += std::min(left_max[i], right_max[i]) - heights[i];
         return totalWater;
     }
 };
