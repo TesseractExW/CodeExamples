@@ -2,7 +2,7 @@ import bisect
 
 
 class Solution:
-    def sparsedHistogram(self, points: list[list[int]], queries: list[list[int]]) -> list[int]:
+    def sparseHistogram(self, points: list[list[int]], queries: list[list[int]]) -> list[int]:
         points.sort()
 
         n = len(points)

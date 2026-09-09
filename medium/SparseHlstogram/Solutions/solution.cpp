@@ -4,7 +4,7 @@
 class Solution {
 public:
     // clang-format off
-    std::vector<long long> sparsedHistogram(
+    std::vector<long long> sparseHistogram(
         std::vector<std::vector<int>> &points, 
         std::vector<std::vector<int>> &queries) 
     {
