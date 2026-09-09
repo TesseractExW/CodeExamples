@@ -29,12 +29,7 @@ private:
         return dp.back() >= 0;
     }
 
-    // clang-format off
-    std::vector<int> getOrder(
-        Graph &graph,
-        std::vector<int> indeg)
-    {
-        // clang-format on
+    std::vector<int> getOrder(Graph &graph, std::vector<int> &indeg) {
         std::queue<int> queue;
         std::vector<int> order;
 
