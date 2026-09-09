@@ -12,7 +12,9 @@ public:
 
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
-                dp[i + 1][j + 1] = grid[i][j] * (std::max(dp[i][j + 1], dp[i + 1][j]) + 1);
+                int best = std::max(dp[i][j + 1], dp[i + 1][j]) + 1;
+
+                dp[i + 1][j + 1] = grid[i][j] * best;
                 answer = std::max(answer, dp[i + 1][j + 1]);
             }
         }

@@ -9,7 +9,7 @@ private:
     // clang-format off
     bool canReach(
         Graph &graph,
-        std::vector<int> &fuel, 
+        std::vector<int> &fuel,
         std::vector<int> &order,
         long long capacity) 
     {
@@ -51,7 +51,13 @@ private:
     }
 
 public:
-    long long minimumTankCapacity(int n, std::vector<std::vector<int>> &edges, std::vector<int> &fuel) {
+    // clang-format off
+    long long minimumTankCapacity(
+        int n,
+        std::vector<std::vector<int>> &edges,
+        std::vector<int> &fuel)
+    {
+        // clang-format on
         std::vector<int> indeg(n, 0);
         Graph graph(n);
 

@@ -2,12 +2,15 @@ import collections
 
 
 class Solution:
+    type Graph = list[list[tuple[int, int]]]
     # fmt: off
-    def canReach(self, 
-                 graph: list[list[tuple[int, int]]], 
-                 fuel : list[int], 
-                 order: list[int], 
-                 capacity: int) -> bool:
+    def canReach(
+        self,
+        graph: Graph,
+        fuel : list[int],
+        order: list[int],
+        capacity: int
+    ) -> bool:
     # fmt: on
         dp = [-1] * len(order)
         dp[0] = 0;
@@ -21,12 +24,7 @@ class Solution:
                     dp[v] = max(dp[v], dp[u] - dist)
         return dp[-1] >= 0
 
-    # fmt: off
-    def getOrder(
-            self, 
-            graph: list[list[tuple[int, int]]], 
-            indeg: list[int]) -> list[int]:
-        # fmt: on
+    def getOrder(self, graph: Graph, indeg: list[int]) -> list[int]:
         queue = collections.deque()
         order = []
 
@@ -43,7 +41,12 @@ class Solution:
                     queue.append(v)
         return order
 
-    def minimumTankCapacity(self, n: int, edges: list[list[int]], fuel: list[int]) -> int:
+    def minimumTankCapacity(
+        self,
+        n: int,
+        edges: list[list[int]],
+        fuel: list[int]
+    ) -> int:
         indeg = [0] * n
         graph = [[] for _ in range(n)]
 

@@ -1,5 +1,5 @@
 class Solution:
-    def kthPosition(self, pos: list[int], queries: list[list[int]]):
+    def kthPosition(self, pos: list[int], queries: list[list[int]]) -> list[int]:
         logJump = 32
 
         jumps = [[0] * logJump for _ in range(len(pos))]

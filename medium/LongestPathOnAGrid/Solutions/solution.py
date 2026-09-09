@@ -8,6 +8,8 @@ class Solution:
 
         for i in range(m):
             for j in range(n):
-                dp[i + 1][j + 1] = grid[i][j] * (max(dp[i][j + 1], dp[i + 1][j]) + 1)
+                best = max(dp[i][j + 1], dp[i + 1][j]) + 1
+
+                dp[i + 1][j + 1] = grid[i][j] * best
                 answer = max(answer, dp[i + 1][j + 1])
         return answer

@@ -2,9 +2,14 @@
 
 class Solution {
 public:
-    std::vector<int> kthPosition(std::vector<int> &pos, std::vector<std::vector<int>> queries) {
+    // clang-format off
+    std::vector<int> kthPosition(
+        std::vector<int> &pos,
+        std::vector<std::vector<int>> &queries)
+    {
+        // clang-format on
         const int logJump = 32;
-
+        // clang-format skip
         std::vector<std::vector<int>> jumps(pos.size(), std::vector<int>(logJump));
         std::vector<int> results(queries.size());
 
