@@ -3,17 +3,10 @@ import collections
 
 class Solution:
     type Graph = list[list[tuple[int, int]]]
-    # fmt: off
-    def canReach(
-        self,
-        graph: Graph,
-        fuel : list[int],
-        order: list[int],
-        capacity: int
-    ) -> bool:
-    # fmt: on
+
+    def canReach(self, graph: Graph, fuel: list[int], order: list[int], capacity: int) -> bool:
         dp = [-1] * len(order)
-        dp[0] = 0;
+        dp[0] = 0
 
         for u in order:
             if dp[u] < 0:
@@ -41,12 +34,7 @@ class Solution:
                     queue.append(v)
         return order
 
-    def minimumTankCapacity(
-        self,
-        n: int,
-        edges: list[list[int]],
-        fuel: list[int]
-    ) -> int:
+    def minimumTankCapacity(self, n: int, edges: list[list[int]], fuel: list[int]) -> int:
         indeg = [0] * n
         graph = [[] for _ in range(n)]
 

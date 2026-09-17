@@ -6,14 +6,7 @@ class Solution {
     using Graph = std::vector<std::vector<std::pair<int, int>>>;
 
 private:
-    // clang-format off
-    bool canReach(
-        Graph &graph,
-        std::vector<int> &fuel,
-        std::vector<int> &order,
-        long long capacity) 
-    {
-        // clang-format on
+    bool canReach(Graph &graph, std::vector<int> &fuel, std::vector<int> &order, long long capacity) {
         std::vector<long long> dp(order.size(), -1);
         dp[0] = 0;
 
@@ -51,13 +44,7 @@ private:
     }
 
 public:
-    // clang-format off
-    long long minimumTankCapacity(
-        int n,
-        std::vector<std::vector<int>> &edges,
-        std::vector<int> &fuel)
-    {
-        // clang-format on
+    long long minimumTankCapacity(int n, std::vector<std::vector<int>> &edges, std::vector<int> &fuel) {
         std::vector<int> indeg(n, 0);
         Graph graph(n);
 
