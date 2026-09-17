@@ -13,10 +13,12 @@ private:
         for (int u : order) {
             if (dp[u] < 0)
                 continue;
+
             dp[u] = std::min(dp[u] + fuel[u], capacity);
             for (auto [v, dist] : graph[u]) {
-                if (dp[u] >= dist)
+                if (dp[u] >= dist) {
                     dp[v] = std::max(dp[v], dp[u] - dist);
+                }
             }
         }
         return dp.back() >= 0;
@@ -27,8 +29,9 @@ private:
         std::vector<int> order;
 
         for (int i = 0; i < (int)graph.size(); ++i) {
-            if (indeg[i] == 0)
+            if (indeg[i] == 0) {
                 queue.push(i);
+            }
         }
         while (!queue.empty()) {
             int u = queue.front();
@@ -36,8 +39,9 @@ private:
             order.push_back(u);
 
             for (auto [v, dist] : graph[u]) {
-                if (--indeg[v] == 0)
+                if (--indeg[v] == 0) {
                     queue.push(v);
+                }
             }
         }
         return order;
@@ -64,10 +68,11 @@ public:
 
         while (low < high) {
             long long mid = low + (high - low) / 2;
-            if (canReach(graph, fuel, order, mid))
+            if (canReach(graph, fuel, order, mid)) {
                 high = mid;
-            else
+            } else {
                 low = mid + 1;
+            }
         }
         return canReach(graph, fuel, order, low) ? low : -1;
     }
